@@ -4,7 +4,7 @@
 #
 Name     : libxml2
 Version  : 2.9.3
-Release  : 24
+Release  : 25
 URL      : ftp://xmlsoft.org/libxml2/libxml2-2.9.3.tar.gz
 Source0  : ftp://xmlsoft.org/libxml2/libxml2-2.9.3.tar.gz
 Summary  : Library providing XML and HTML support
@@ -93,6 +93,11 @@ python components for the libxml2 package.
 %patch1 -p1
 
 %build
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -fno-semantic-interposition -falign-functions=32 -O3 -flto "
+export CXXFLAGS="$CXXFLAGS -fno-semantic-interposition -falign-functions=32 -O3 -flto "
 %configure --disable-static
 make V=1  %{?_smp_mflags}
 
