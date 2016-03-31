@@ -1,6 +1,6 @@
 Name     : libxml2
 Version  : 2.9.3
-Release  : 26
+Release  : 27
 URL      : ftp://xmlsoft.org/libxml2/libxml2-2.9.3.tar.gz
 Source0  : ftp://xmlsoft.org/libxml2/libxml2-2.9.3.tar.gz
 Summary  : Library providing XML and HTML support
@@ -106,6 +106,7 @@ make dba100000.xml
 ./xmllint --stream  dba100000.xml
 ./xmllint --noout --valid test/valid/REC-xml-19980210.xml
 ./xmllint --stream --valid test/valid/REC-xml-19980210.xml
+make clean
 CFLAGS="$CFLAGS2 -fprofile-use" %configure --disable-static
 make V=1  %{?_smp_mflags}
 
