@@ -4,7 +4,7 @@
 #
 Name     : libxml2
 Version  : 2.9.3
-Release  : 29
+Release  : 30
 URL      : ftp://xmlsoft.org/libxml2/libxml2-2.9.3.tar.gz
 Source0  : ftp://xmlsoft.org/libxml2/libxml2-2.9.3.tar.gz
 Summary  : Library providing XML and HTML support
