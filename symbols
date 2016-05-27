@@ -462,6 +462,7 @@ libxml2.so.2:xmlEncodeEntities
 libxml2.so.2:xmlEncodeEntitiesReentrant
 libxml2.so.2:xmlEncodeSpecialChars
 libxml2.so.2:xmlErrMemory
+libxml2.so.2:xmlEscapeFormatString
 libxml2.so.2:xmlExpCtxtNbCons
 libxml2.so.2:xmlExpCtxtNbNodes
 libxml2.so.2:xmlExpDump
