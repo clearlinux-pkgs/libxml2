@@ -4,7 +4,7 @@
 #
 Name     : libxml2
 Version  : 2.9.4
-Release  : 35
+Release  : 37
 URL      : ftp://xmlsoft.org/libxml2/libxml2-2.9.4.tar.gz
 Source0  : ftp://xmlsoft.org/libxml2/libxml2-2.9.4.tar.gz
 Summary  : Library providing XML and HTML support
@@ -26,6 +26,7 @@ BuildRequires : setuptools
 BuildRequires : zlib-dev
 Patch1: stateless.patch
 Patch2: cve-2016-5131.patch
+Patch3: maybe-fix-cve-2016-9318.patch
 
 %description
 This library allows to manipulate XML files. It includes support
@@ -96,16 +97,14 @@ python components for the libxml2 package.
 %setup -q -n libxml2-2.9.4
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 export LANG=C
-export AR=gcc-ar
-export RANLIB=gcc-ranlib
-export NM=gcc-nm
-export CFLAGS="$CFLAGS -flto -O3 -fno-semantic-interposition -falign-functions=32 "
-export FCFLAGS="$CFLAGS -flto -O3 -fno-semantic-interposition -falign-functions=32 "
-export FFLAGS="$CFLAGS -flto -O3 -fno-semantic-interposition -falign-functions=32 "
-export CXXFLAGS="$CXXFLAGS -flto -O3 -fno-semantic-interposition -falign-functions=32 "
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
 export CFLAGS_GENERATE="$CFLAGS -fprofile-generate -fprofile-dir=pgo "
 export FCFLAGS_GENERATE="$FCFLAGS -fprofile-generate -fprofile-dir=pgo "
 export FFLAGS_GENERATE="$FFLAGS -fprofile-generate -fprofile-dir=pgo "
