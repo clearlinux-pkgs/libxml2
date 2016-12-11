@@ -4,7 +4,7 @@
 #
 Name     : libxml2
 Version  : 2.9.4
-Release  : 38
+Release  : 39
 URL      : ftp://xmlsoft.org/libxml2/libxml2-2.9.4.tar.gz
 Source0  : ftp://xmlsoft.org/libxml2/libxml2-2.9.4.tar.gz
 Summary  : Library providing XML and HTML support
@@ -16,14 +16,23 @@ Requires: libxml2-lib
 Requires: libxml2-data
 Requires: libxml2-doc
 BuildRequires : bzip2-dev
+BuildRequires : gcc-dev32
+BuildRequires : gcc-libgcc32
+BuildRequires : gcc-libstdc++32
+BuildRequires : glibc-dev32
+BuildRequires : glibc-libc32
 BuildRequires : pbr
 BuildRequires : pip
+BuildRequires : pkgconfig(32icu-i18n)
+BuildRequires : pkgconfig(32liblzma)
+BuildRequires : pkgconfig(32zlib)
 BuildRequires : pkgconfig(icu-i18n)
 BuildRequires : pkgconfig(liblzma)
 BuildRequires : pkgconfig(zlib)
 BuildRequires : python-dev
 BuildRequires : setuptools
 BuildRequires : zlib-dev
+BuildRequires : zlib-dev32
 Patch1: stateless.patch
 Patch2: cve-2016-5131.patch
 Patch3: maybe-fix-cve-2016-9318.patch
@@ -68,6 +77,17 @@ Provides: libxml2-devel
 dev components for the libxml2 package.
 
 
+%package dev32
+Summary: dev32 components for the libxml2 package.
+Group: Default
+Requires: libxml2-lib32
+Requires: libxml2-bin
+Requires: libxml2-data
+
+%description dev32
+dev32 components for the libxml2 package.
+
+
 %package doc
 Summary: doc components for the libxml2 package.
 Group: Documentation
@@ -85,6 +105,15 @@ Requires: libxml2-data
 lib components for the libxml2 package.
 
 
+%package lib32
+Summary: lib32 components for the libxml2 package.
+Group: Default
+Requires: libxml2-data
+
+%description lib32
+lib32 components for the libxml2 package.
+
+
 %package python
 Summary: python components for the libxml2 package.
 Group: Default
@@ -98,6 +127,9 @@ python components for the libxml2 package.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+pushd ..
+cp -a libxml2-2.9.4 build32
+popd
 
 %build
 export LANG=C
@@ -125,6 +157,13 @@ make clean
 CFLAGS="${CFLAGS_USE}" CXXFLAGS="${CXXFLAGS_USE}" FFLAGS="${FFLAGS_USE}" FCFLAGS="${FCFLAGS_USE}" %configure --disable-static
 make V=1  %{?_smp_mflags}
 
+pushd ../build32/
+export CFLAGS="$CFLAGS -m32"
+export CXXFLAGS="$CXXFLAGS -m32"
+export LDFLAGS="$LDFLAGS -m32"
+%configure --disable-static  --without-python --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
+make V=1  %{?_smp_mflags}
+popd
 %check
 export LANG=C
 export http_proxy=http://127.0.0.1:9/
@@ -134,10 +173,21 @@ make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
 rm -rf %{buildroot}
+pushd ../build32/
+%make_install32
+if [ -d  %{buildroot}/usr/lib32/pkgconfig ]
+then
+pushd %{buildroot}/usr/lib32/pkgconfig
+for i in *.pc ; do mv $i 32$i ; done
+popd
+fi
+popd
 %make_install
 
 %files
 %defattr(-,root,root,-)
+/usr/lib32/cmake/libxml2/libxml2-config.cmake
+/usr/lib32/xml2Conf.sh
 /usr/lib64/cmake/libxml2/libxml2-config.cmake
 /usr/lib64/xml2Conf.sh
 
@@ -349,6 +399,11 @@ rm -rf %{buildroot}
 /usr/lib64/pkgconfig/libxml-2.0.pc
 /usr/share/aclocal/*.m4
 
+%files dev32
+%defattr(-,root,root,-)
+/usr/lib32/libxml2.so
+/usr/lib32/pkgconfig/32libxml-2.0.pc
+
 %files doc
 %defattr(-,root,root,-)
 %doc /usr/share/doc/libxml2/*
@@ -414,6 +469,11 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 /usr/lib64/libxml2.so.2
 /usr/lib64/libxml2.so.2.9.4
+
+%files lib32
+%defattr(-,root,root,-)
+/usr/lib32/libxml2.so.2
+/usr/lib32/libxml2.so.2.9.4
 
 %files python
 %defattr(-,root,root,-)
