@@ -4,7 +4,7 @@
 #
 Name     : libxml2
 Version  : 2.9.4
-Release  : 37
+Release  : 38
 URL      : ftp://xmlsoft.org/libxml2/libxml2-2.9.4.tar.gz
 Source0  : ftp://xmlsoft.org/libxml2/libxml2-2.9.4.tar.gz
 Summary  : Library providing XML and HTML support
@@ -345,8 +345,8 @@ rm -rf %{buildroot}
 /usr/include/libxml2/libxml/xpath.h
 /usr/include/libxml2/libxml/xpathInternals.h
 /usr/include/libxml2/libxml/xpointer.h
-/usr/lib64/*.so
-/usr/lib64/pkgconfig/*.pc
+/usr/lib64/libxml2.so
+/usr/lib64/pkgconfig/libxml-2.0.pc
 /usr/share/aclocal/*.m4
 
 %files doc
@@ -412,7 +412,8 @@ rm -rf %{buildroot}
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/*.so.*
+/usr/lib64/libxml2.so.2
+/usr/lib64/libxml2.so.2.9.4
 
 %files python
 %defattr(-,root,root,-)
