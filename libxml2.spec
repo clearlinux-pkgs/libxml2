@@ -4,7 +4,7 @@
 #
 Name     : libxml2
 Version  : 074180119905049851910698
-Release  : 44
+Release  : 45
 URL      : https://git.gnome.org/browse/libxml2/snapshot/libxml2-074180119fc90d5fd04ef9e8a5ee1910d6f9ad8e.tar.xz
 Source0  : https://git.gnome.org/browse/libxml2/snapshot/libxml2-074180119fc90d5fd04ef9e8a5ee1910d6f9ad8e.tar.xz
 Summary  : libXML library version2.
@@ -129,15 +129,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1494599755
+export SOURCE_DATE_EPOCH=1504031112
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition -fstack-protector-strong "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition -fstack-protector-strong "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition -fstack-protector-strong "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-semantic-interposition -fstack-protector-strong "
-export CFLAGS_GENERATE="$CFLAGS -fprofile-generate -fprofile-dir=pgo "
-export FCFLAGS_GENERATE="$FCFLAGS -fprofile-generate -fprofile-dir=pgo "
-export FFLAGS_GENERATE="$FFLAGS -fprofile-generate -fprofile-dir=pgo "
-export CXXFLAGS_GENERATE="$CXXFLAGS -fprofile-generate -fprofile-dir=pgo "
+export CFLAGS_GENERATE="$CFLAGS -fprofile-generate -fprofile-dir=pgo -fprofile-update=atomic "
+export FCFLAGS_GENERATE="$FCFLAGS -fprofile-generate -fprofile-dir=pgo -fprofile-update=atomic "
+export FFLAGS_GENERATE="$FFLAGS -fprofile-generate -fprofile-dir=pgo -fprofile-update=atomic "
+export CXXFLAGS_GENERATE="$CXXFLAGS -fprofile-generate -fprofile-dir=pgo -fprofile-update=atomic "
 export CFLAGS_USE="$CFLAGS -fprofile-use -fprofile-dir=pgo -fprofile-correction "
 export FCFLAGS_USE="$FCFLAGS -fprofile-use -fprofile-dir=pgo -fprofile-correction "
 export FFLAGS_USE="$FFLAGS -fprofile-use -fprofile-dir=pgo -fprofile-correction "
@@ -170,7 +170,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1494599755
+export SOURCE_DATE_EPOCH=1504031112
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
@@ -182,6 +182,12 @@ popd
 fi
 popd
 %make_install
+## make_install_append content
+make clean
+%configure --with-python=/usr/bin/python3
+make %{_smp_mflags}
+%make_install
+## make_install_append end
 
 %files
 %defattr(-,root,root,-)
@@ -634,3 +640,4 @@ popd
 %files python
 %defattr(-,root,root,-)
 /usr/lib/python2*/*
+/usr/lib/python3*/*

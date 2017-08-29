@@ -1,0 +1,4 @@
+make clean
+%configure --with-python=/usr/bin/python3
+make %{_smp_mflags}
+%make_install
