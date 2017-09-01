@@ -1,2 +1,3 @@
 stateless.patch
 cve-2016-9318.nopatch
+remove-pyverify_fd.patch
