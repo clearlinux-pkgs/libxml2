@@ -1,0 +1,5 @@
+Configure miss: i686-generic-linux-gnu-pkg-config
+Configure miss: i686-generic-linux-gnu-objdump
+Configure miss: i686-generic-linux-gnu-dlltool
+Configure miss: i686-generic-linux-gnu-strip
+Configure miss: i686-generic-linux-gnu-mt

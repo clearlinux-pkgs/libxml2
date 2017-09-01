@@ -4,7 +4,7 @@
 #
 Name     : libxml2
 Version  : 074180119905049851910698
-Release  : 45
+Release  : 46
 URL      : https://git.gnome.org/browse/libxml2/snapshot/libxml2-074180119fc90d5fd04ef9e8a5ee1910d6f9ad8e.tar.xz
 Source0  : https://git.gnome.org/browse/libxml2/snapshot/libxml2-074180119fc90d5fd04ef9e8a5ee1910d6f9ad8e.tar.xz
 Summary  : libXML library version2.
@@ -36,6 +36,7 @@ BuildRequires : zlib-dev
 BuildRequires : zlib-dev32
 Patch1: stateless.patch
 Patch2: cve-2016-9318.nopatch
+Patch3: remove-pyverify_fd.patch
 
 %description
 XML toolkit from the GNOME project
@@ -120,6 +121,7 @@ python components for the libxml2 package.
 %prep
 %setup -q -n libxml2-074180119fc90d5fd04ef9e8a5ee1910d6f9ad8e
 %patch1 -p1
+%patch3 -p1
 pushd ..
 cp -a libxml2-074180119fc90d5fd04ef9e8a5ee1910d6f9ad8e build32
 popd
@@ -129,7 +131,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1504031112
+export SOURCE_DATE_EPOCH=1504308013
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition -fstack-protector-strong "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition -fstack-protector-strong "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition -fstack-protector-strong "
@@ -170,7 +172,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1504031112
+export SOURCE_DATE_EPOCH=1504308013
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
