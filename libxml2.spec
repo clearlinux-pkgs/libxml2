@@ -4,7 +4,7 @@
 #
 Name     : libxml2
 Version  : 074180119905049851910698
-Release  : 46
+Release  : 47
 URL      : https://git.gnome.org/browse/libxml2/snapshot/libxml2-074180119fc90d5fd04ef9e8a5ee1910d6f9ad8e.tar.xz
 Source0  : https://git.gnome.org/browse/libxml2/snapshot/libxml2-074180119fc90d5fd04ef9e8a5ee1910d6f9ad8e.tar.xz
 Summary  : libXML library version2.
