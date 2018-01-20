@@ -93,7 +93,6 @@ libxml2.so.2:cdataBlock
 libxml2.so.2:characters
 libxml2.so.2:checkNamespace
 libxml2.so.2:comment
-libxml2.so.2:compute_minrun
 libxml2.so.2:docbDefaultSAXHandlerInit
 libxml2.so.2:elementDecl
 libxml2.so.2:endDocument
@@ -772,7 +771,6 @@ libxml2.so.2:xmlNewValidCtxt
 libxml2.so.2:xmlNextChar
 libxml2.so.2:xmlNextElementSibling
 libxml2.so.2:xmlNoNetExternalEntityLoader
-libxml2.so.2:xmlNoXxeExternalEntityLoader
 libxml2.so.2:xmlNodeAddContent
 libxml2.so.2:xmlNodeAddContentLen
 libxml2.so.2:xmlNodeBufGetContent
