@@ -4,16 +4,17 @@
 #
 Name     : libxml2
 Version  : 2.9.7
-Release  : 50
+Release  : 51
 URL      : https://git.gnome.org/browse/libxml2/snapshot/libxml2-2.9.7.tar.xz
 Source0  : https://git.gnome.org/browse/libxml2/snapshot/libxml2-2.9.7.tar.xz
 Summary  : libXML library version2.
 Group    : Development/Tools
 License  : MIT
 Requires: libxml2-bin
+Requires: libxml2-python3
 Requires: libxml2-lib
+Requires: libxml2-data
 Requires: libxml2-doc
-Requires: libxml2-legacypython
 Requires: libxml2-python
 BuildRequires : bzip2-dev
 BuildRequires : gcc-dev32
@@ -28,6 +29,7 @@ BuildRequires : pkgconfig(icu-i18n)
 BuildRequires : pkgconfig(liblzma)
 BuildRequires : pkgconfig(zlib)
 BuildRequires : python-dev
+BuildRequires : python3-dev
 BuildRequires : zlib-dev
 BuildRequires : zlib-dev32
 Patch1: stateless.patch
@@ -42,9 +44,18 @@ http://xmlsoft.org/
 %package bin
 Summary: bin components for the libxml2 package.
 Group: Binaries
+Requires: libxml2-data
 
 %description bin
 bin components for the libxml2 package.
+
+
+%package data
+Summary: data components for the libxml2 package.
+Group: Data
+
+%description data
+data components for the libxml2 package.
 
 
 %package dev
@@ -52,6 +63,7 @@ Summary: dev components for the libxml2 package.
 Group: Development
 Requires: libxml2-lib
 Requires: libxml2-bin
+Requires: libxml2-data
 Provides: libxml2-devel
 
 %description dev
@@ -63,6 +75,7 @@ Summary: dev32 components for the libxml2 package.
 Group: Default
 Requires: libxml2-lib32
 Requires: libxml2-bin
+Requires: libxml2-data
 Requires: libxml2-dev
 
 %description dev32
@@ -77,18 +90,10 @@ Group: Documentation
 doc components for the libxml2 package.
 
 
-%package legacypython
-Summary: legacypython components for the libxml2 package.
-Group: Default
-Requires: python-core
-
-%description legacypython
-legacypython components for the libxml2 package.
-
-
 %package lib
 Summary: lib components for the libxml2 package.
 Group: Libraries
+Requires: libxml2-data
 
 %description lib
 lib components for the libxml2 package.
@@ -97,6 +102,7 @@ lib components for the libxml2 package.
 %package lib32
 Summary: lib32 components for the libxml2 package.
 Group: Default
+Requires: libxml2-data
 
 %description lib32
 lib32 components for the libxml2 package.
@@ -105,10 +111,19 @@ lib32 components for the libxml2 package.
 %package python
 Summary: python components for the libxml2 package.
 Group: Default
-Requires: libxml2-legacypython
+Requires: libxml2-python3
 
 %description python
 python components for the libxml2 package.
+
+
+%package python3
+Summary: python3 components for the libxml2 package.
+Group: Default
+Requires: python3-core
+
+%description python3
+python3 components for the libxml2 package.
 
 
 %prep
@@ -124,7 +139,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1516408405
+export SOURCE_DATE_EPOCH=1517618927
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
@@ -165,7 +180,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1516408405
+export SOURCE_DATE_EPOCH=1517618927
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
@@ -197,70 +212,8 @@ make %{_smp_mflags}
 /usr/bin/xmlcatalog
 /usr/bin/xmllint
 
-%files dev
+%files data
 %defattr(-,root,root,-)
-/usr/include/libxml2/libxml/DOCBparser.h
-/usr/include/libxml2/libxml/HTMLparser.h
-/usr/include/libxml2/libxml/HTMLtree.h
-/usr/include/libxml2/libxml/SAX.h
-/usr/include/libxml2/libxml/SAX2.h
-/usr/include/libxml2/libxml/c14n.h
-/usr/include/libxml2/libxml/catalog.h
-/usr/include/libxml2/libxml/chvalid.h
-/usr/include/libxml2/libxml/debugXML.h
-/usr/include/libxml2/libxml/dict.h
-/usr/include/libxml2/libxml/encoding.h
-/usr/include/libxml2/libxml/entities.h
-/usr/include/libxml2/libxml/globals.h
-/usr/include/libxml2/libxml/hash.h
-/usr/include/libxml2/libxml/list.h
-/usr/include/libxml2/libxml/nanoftp.h
-/usr/include/libxml2/libxml/nanohttp.h
-/usr/include/libxml2/libxml/parser.h
-/usr/include/libxml2/libxml/parserInternals.h
-/usr/include/libxml2/libxml/pattern.h
-/usr/include/libxml2/libxml/relaxng.h
-/usr/include/libxml2/libxml/schemasInternals.h
-/usr/include/libxml2/libxml/schematron.h
-/usr/include/libxml2/libxml/threads.h
-/usr/include/libxml2/libxml/tree.h
-/usr/include/libxml2/libxml/uri.h
-/usr/include/libxml2/libxml/valid.h
-/usr/include/libxml2/libxml/xinclude.h
-/usr/include/libxml2/libxml/xlink.h
-/usr/include/libxml2/libxml/xmlIO.h
-/usr/include/libxml2/libxml/xmlautomata.h
-/usr/include/libxml2/libxml/xmlerror.h
-/usr/include/libxml2/libxml/xmlexports.h
-/usr/include/libxml2/libxml/xmlmemory.h
-/usr/include/libxml2/libxml/xmlmodule.h
-/usr/include/libxml2/libxml/xmlreader.h
-/usr/include/libxml2/libxml/xmlregexp.h
-/usr/include/libxml2/libxml/xmlsave.h
-/usr/include/libxml2/libxml/xmlschemas.h
-/usr/include/libxml2/libxml/xmlschemastypes.h
-/usr/include/libxml2/libxml/xmlstring.h
-/usr/include/libxml2/libxml/xmlunicode.h
-/usr/include/libxml2/libxml/xmlversion.h
-/usr/include/libxml2/libxml/xmlwriter.h
-/usr/include/libxml2/libxml/xpath.h
-/usr/include/libxml2/libxml/xpathInternals.h
-/usr/include/libxml2/libxml/xpointer.h
-/usr/lib64/libxml2.so
-/usr/lib64/pkgconfig/libxml-2.0.pc
-/usr/share/aclocal/*.m4
-
-%files dev32
-%defattr(-,root,root,-)
-/usr/lib32/libxml2.so
-/usr/lib32/pkgconfig/32libxml-2.0.pc
-/usr/lib32/pkgconfig/libxml-2.0.pc
-
-%files doc
-%defattr(-,root,root,-)
-%doc /usr/share/doc/libxml2/*
-%doc /usr/share/man/man1/*
-%doc /usr/share/man/man3/*
 /usr/share/doc/libxml2-2.9.7/Copyright
 /usr/share/doc/libxml2-2.9.7/examples/testHTML.c
 /usr/share/doc/libxml2-2.9.7/examples/testSAX.c
@@ -419,104 +372,169 @@ make %{_smp_mflags}
 /usr/share/doc/libxml2-2.9.7/html/xpath2.c
 /usr/share/doc/libxml2-2.9.7/html/xpath2.res
 /usr/share/doc/libxml2-python-2.9.7/TODO
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/attribs.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/build.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/compareNodes.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/ctxterror.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/cutnpaste.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/dtdvalid.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/error.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/inbuf.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/indexes.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/input_callback.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/nsdel.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/outbuf.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/push.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/pushSAX.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/pushSAXhtml.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/reader.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/reader2.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/reader3.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/reader4.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/reader5.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/reader6.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/reader7.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/reader8.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/readererr.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/readernext.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/regexp.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/relaxng.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/resolver.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/schema.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/serialize.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/sync.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/thread2.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/tst.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/tstLastError.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/tstURI.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/tstmem.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/tstxpath.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/validDTD.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/validRNG.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/validSchemas.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/validate.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/walker.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/xpath.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/xpathext.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/xpathleak.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/xpathns.cpython-36.pyc
+/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/xpathret.cpython-36.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/attribs.py
-/usr/share/doc/libxml2-python-2.9.7/examples/attribs.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/build.py
-/usr/share/doc/libxml2-python-2.9.7/examples/build.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/compareNodes.py
-/usr/share/doc/libxml2-python-2.9.7/examples/compareNodes.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/ctxterror.py
-/usr/share/doc/libxml2-python-2.9.7/examples/ctxterror.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/cutnpaste.py
-/usr/share/doc/libxml2-python-2.9.7/examples/cutnpaste.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/dtdvalid.py
-/usr/share/doc/libxml2-python-2.9.7/examples/dtdvalid.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/error.py
-/usr/share/doc/libxml2-python-2.9.7/examples/error.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/inbuf.py
-/usr/share/doc/libxml2-python-2.9.7/examples/inbuf.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/indexes.py
-/usr/share/doc/libxml2-python-2.9.7/examples/indexes.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/input_callback.py
-/usr/share/doc/libxml2-python-2.9.7/examples/input_callback.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/invalid.xml
 /usr/share/doc/libxml2-python-2.9.7/examples/nsdel.py
-/usr/share/doc/libxml2-python-2.9.7/examples/nsdel.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/outbuf.py
-/usr/share/doc/libxml2-python-2.9.7/examples/outbuf.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/push.py
-/usr/share/doc/libxml2-python-2.9.7/examples/push.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/pushSAX.py
-/usr/share/doc/libxml2-python-2.9.7/examples/pushSAX.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/pushSAXhtml.py
-/usr/share/doc/libxml2-python-2.9.7/examples/pushSAXhtml.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/reader.py
-/usr/share/doc/libxml2-python-2.9.7/examples/reader.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/reader2.py
-/usr/share/doc/libxml2-python-2.9.7/examples/reader2.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/reader3.py
-/usr/share/doc/libxml2-python-2.9.7/examples/reader3.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/reader4.py
-/usr/share/doc/libxml2-python-2.9.7/examples/reader4.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/reader5.py
-/usr/share/doc/libxml2-python-2.9.7/examples/reader5.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/reader6.py
-/usr/share/doc/libxml2-python-2.9.7/examples/reader6.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/reader7.py
-/usr/share/doc/libxml2-python-2.9.7/examples/reader7.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/reader8.py
-/usr/share/doc/libxml2-python-2.9.7/examples/reader8.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/readererr.py
-/usr/share/doc/libxml2-python-2.9.7/examples/readererr.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/readernext.py
-/usr/share/doc/libxml2-python-2.9.7/examples/readernext.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/regexp.py
-/usr/share/doc/libxml2-python-2.9.7/examples/regexp.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/relaxng.py
-/usr/share/doc/libxml2-python-2.9.7/examples/relaxng.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/resolver.py
-/usr/share/doc/libxml2-python-2.9.7/examples/resolver.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/schema.py
-/usr/share/doc/libxml2-python-2.9.7/examples/schema.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/serialize.py
-/usr/share/doc/libxml2-python-2.9.7/examples/serialize.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/sync.py
-/usr/share/doc/libxml2-python-2.9.7/examples/sync.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/test.dtd
 /usr/share/doc/libxml2-python-2.9.7/examples/thread2.py
-/usr/share/doc/libxml2-python-2.9.7/examples/thread2.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/tst.py
-/usr/share/doc/libxml2-python-2.9.7/examples/tst.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/tst.xml
 /usr/share/doc/libxml2-python-2.9.7/examples/tstLastError.py
-/usr/share/doc/libxml2-python-2.9.7/examples/tstLastError.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/tstURI.py
-/usr/share/doc/libxml2-python-2.9.7/examples/tstURI.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/tstmem.py
-/usr/share/doc/libxml2-python-2.9.7/examples/tstmem.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/tstxpath.py
-/usr/share/doc/libxml2-python-2.9.7/examples/tstxpath.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/valid.xml
 /usr/share/doc/libxml2-python-2.9.7/examples/validDTD.py
-/usr/share/doc/libxml2-python-2.9.7/examples/validDTD.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/validRNG.py
-/usr/share/doc/libxml2-python-2.9.7/examples/validRNG.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/validSchemas.py
-/usr/share/doc/libxml2-python-2.9.7/examples/validSchemas.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/validate.py
-/usr/share/doc/libxml2-python-2.9.7/examples/validate.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/walker.py
-/usr/share/doc/libxml2-python-2.9.7/examples/walker.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/xpath.py
-/usr/share/doc/libxml2-python-2.9.7/examples/xpath.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/xpathext.py
-/usr/share/doc/libxml2-python-2.9.7/examples/xpathext.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/xpathleak.py
-/usr/share/doc/libxml2-python-2.9.7/examples/xpathleak.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/xpathns.py
-/usr/share/doc/libxml2-python-2.9.7/examples/xpathns.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/xpathret.py
-/usr/share/doc/libxml2-python-2.9.7/examples/xpathret.pyc
+
+%files dev
+%defattr(-,root,root,-)
+/usr/include/libxml2/libxml/DOCBparser.h
+/usr/include/libxml2/libxml/HTMLparser.h
+/usr/include/libxml2/libxml/HTMLtree.h
+/usr/include/libxml2/libxml/SAX.h
+/usr/include/libxml2/libxml/SAX2.h
+/usr/include/libxml2/libxml/c14n.h
+/usr/include/libxml2/libxml/catalog.h
+/usr/include/libxml2/libxml/chvalid.h
+/usr/include/libxml2/libxml/debugXML.h
+/usr/include/libxml2/libxml/dict.h
+/usr/include/libxml2/libxml/encoding.h
+/usr/include/libxml2/libxml/entities.h
+/usr/include/libxml2/libxml/globals.h
+/usr/include/libxml2/libxml/hash.h
+/usr/include/libxml2/libxml/list.h
+/usr/include/libxml2/libxml/nanoftp.h
+/usr/include/libxml2/libxml/nanohttp.h
+/usr/include/libxml2/libxml/parser.h
+/usr/include/libxml2/libxml/parserInternals.h
+/usr/include/libxml2/libxml/pattern.h
+/usr/include/libxml2/libxml/relaxng.h
+/usr/include/libxml2/libxml/schemasInternals.h
+/usr/include/libxml2/libxml/schematron.h
+/usr/include/libxml2/libxml/threads.h
+/usr/include/libxml2/libxml/tree.h
+/usr/include/libxml2/libxml/uri.h
+/usr/include/libxml2/libxml/valid.h
+/usr/include/libxml2/libxml/xinclude.h
+/usr/include/libxml2/libxml/xlink.h
+/usr/include/libxml2/libxml/xmlIO.h
+/usr/include/libxml2/libxml/xmlautomata.h
+/usr/include/libxml2/libxml/xmlerror.h
+/usr/include/libxml2/libxml/xmlexports.h
+/usr/include/libxml2/libxml/xmlmemory.h
+/usr/include/libxml2/libxml/xmlmodule.h
+/usr/include/libxml2/libxml/xmlreader.h
+/usr/include/libxml2/libxml/xmlregexp.h
+/usr/include/libxml2/libxml/xmlsave.h
+/usr/include/libxml2/libxml/xmlschemas.h
+/usr/include/libxml2/libxml/xmlschemastypes.h
+/usr/include/libxml2/libxml/xmlstring.h
+/usr/include/libxml2/libxml/xmlunicode.h
+/usr/include/libxml2/libxml/xmlversion.h
+/usr/include/libxml2/libxml/xmlwriter.h
+/usr/include/libxml2/libxml/xpath.h
+/usr/include/libxml2/libxml/xpathInternals.h
+/usr/include/libxml2/libxml/xpointer.h
+/usr/lib64/libxml2.so
+/usr/lib64/pkgconfig/libxml-2.0.pc
+/usr/share/aclocal/*.m4
+
+%files dev32
+%defattr(-,root,root,-)
+/usr/lib32/libxml2.so
+/usr/lib32/pkgconfig/32libxml-2.0.pc
+/usr/lib32/pkgconfig/libxml-2.0.pc
+
+%files doc
+%defattr(-,root,root,-)
+%doc /usr/share/doc/libxml2/*
+%doc /usr/share/man/man1/*
+%doc /usr/share/man/man3/*
 /usr/share/gtk-doc/html/libxml2/general.html
 /usr/share/gtk-doc/html/libxml2/home.png
 /usr/share/gtk-doc/html/libxml2/index.html
@@ -573,10 +591,6 @@ make %{_smp_mflags}
 /usr/share/gtk-doc/html/libxml2/style.css
 /usr/share/gtk-doc/html/libxml2/up.png
 
-%files legacypython
-%defattr(-,root,root,-)
-/usr/lib/python2*/*
-
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libxml2.so.2
@@ -589,3 +603,7 @@ make %{_smp_mflags}
 
 %files python
 %defattr(-,root,root,-)
+
+%files python3
+%defattr(-,root,root,-)
+/usr/lib/python3*/*
