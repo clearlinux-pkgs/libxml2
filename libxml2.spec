@@ -28,7 +28,7 @@ BuildRequires : pkgconfig(32zlib)
 BuildRequires : pkgconfig(icu-i18n)
 BuildRequires : pkgconfig(liblzma)
 BuildRequires : pkgconfig(zlib)
-BuildRequires : python-dev
+
 BuildRequires : python3-dev
 BuildRequires : zlib-dev
 BuildRequires : zlib-dev32
