@@ -1,4 +1,5 @@
 # This file contains recursive sources that require this package
 cgit
+meld
 php
 xdg-utils
