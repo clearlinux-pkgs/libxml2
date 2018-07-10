@@ -4,9 +4,9 @@
 #
 Name     : libxml2
 Version  : 2.9.7
-Release  : 62
-URL      : https://git.gnome.org/browse/libxml2/snapshot/libxml2-2.9.7.tar.xz
-Source0  : https://git.gnome.org/browse/libxml2/snapshot/libxml2-2.9.7.tar.xz
+Release  : 63
+URL      : https://gitlab.gnome.org/GNOME/libxml2/-/archive/v2.9.7/libxml2-v2.9.7.tar.gz
+Source0  : https://gitlab.gnome.org/GNOME/libxml2/-/archive/v2.9.7/libxml2-v2.9.7.tar.gz
 Summary  : libXML library version2.
 Group    : Development/Tools
 License  : MIT
@@ -122,11 +122,11 @@ python3 components for the libxml2 package.
 
 
 %prep
-%setup -q -n libxml2-2.9.7
+%setup -q -n libxml2-v2.9.7
 %patch1 -p1
 %patch3 -p1
 pushd ..
-cp -a libxml2-2.9.7 build32
+cp -a libxml2-v2.9.7 build32
 popd
 
 %build
@@ -134,7 +134,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1530382826
+export SOURCE_DATE_EPOCH=1531266552
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -175,7 +175,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1530382826
+export SOURCE_DATE_EPOCH=1531266552
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/libxml2
 cp Copyright %{buildroot}/usr/share/doc/libxml2/Copyright
@@ -429,53 +429,6 @@ make %{_smp_mflags}
 /usr/share/doc/libxml2-2.9.7/html/xpath2.c
 /usr/share/doc/libxml2-2.9.7/html/xpath2.res
 /usr/share/doc/libxml2-python-2.9.7/TODO
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/attribs.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/build.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/compareNodes.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/ctxterror.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/cutnpaste.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/dtdvalid.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/error.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/inbuf.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/indexes.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/input_callback.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/nsdel.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/outbuf.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/push.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/pushSAX.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/pushSAXhtml.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/reader.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/reader2.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/reader3.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/reader4.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/reader5.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/reader6.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/reader7.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/reader8.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/readererr.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/readernext.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/regexp.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/relaxng.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/resolver.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/schema.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/serialize.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/sync.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/thread2.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/tst.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/tstLastError.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/tstURI.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/tstmem.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/tstxpath.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/validDTD.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/validRNG.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/validSchemas.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/validate.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/walker.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/xpath.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/xpathext.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/xpathleak.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/xpathns.cpython-37.pyc
-/usr/share/doc/libxml2-python-2.9.7/examples/__pycache__/xpathret.cpython-37.pyc
 /usr/share/doc/libxml2-python-2.9.7/examples/attribs.py
 /usr/share/doc/libxml2-python-2.9.7/examples/build.py
 /usr/share/doc/libxml2-python-2.9.7/examples/compareNodes.py
