@@ -1,5 +1,13 @@
 # This file contains recursive sources that require this package
+cantor
 cgit
+gnome-doc-utils
+kconfigwidgets
+kservice
+kwallet
 meld
 php
+pyside2-setup
+raptor2
+tdb
 xdg-utils
