@@ -5,7 +5,9 @@ gnome-doc-utils
 kconfigwidgets
 kservice
 kwallet
+libkcapi
 meld
+neomutt
 php
 pyside2-setup
 raptor2

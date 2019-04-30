@@ -1,0 +1,44 @@
+commit 346febc6abbd63d1fa6a532c7429d2c11b5c269b
+Author: Nick Wellnhofer <wellnhofer@aevum.de>
+Date:   Thu Apr 25 11:34:08 2019 +0200
+
+    Fix call stack overflow in xmlFreePattern
+    
+    Since xmlFreePattern tried to free the next pattern recursively, its
+    behavior is identical to xmlFreePatternList. Make it call
+    xmlFreePatternList to avoid call stack overflows.
+    
+    Found by OSS-Fuzz.
+
+diff --git a/pattern.c b/pattern.c
+index 0eb8d81..fdf5c79 100644
+--- a/pattern.c
++++ b/pattern.c
+@@ -229,13 +229,16 @@ xmlNewPattern(void) {
+  */
+ void
+ xmlFreePattern(xmlPatternPtr comp) {
++    xmlFreePatternList(comp);
++}
++
++static void
++xmlFreePatternInternal(xmlPatternPtr comp) {
+     xmlStepOpPtr op;
+     int i;
+ 
+     if (comp == NULL)
+ 	return;
+-    if (comp->next != NULL)
+-        xmlFreePattern(comp->next);
+     if (comp->stream != NULL)
+         xmlFreeStreamComp(comp->stream);
+     if (comp->pattern != NULL)
+@@ -273,7 +276,7 @@ xmlFreePatternList(xmlPatternPtr comp) {
+ 	cur = comp;
+ 	comp = comp->next;
+ 	cur->next = NULL;
+-	xmlFreePattern(cur);
++	xmlFreePatternInternal(cur);
+     }
+ }
+ 
