@@ -3,6 +3,7 @@ cantor
 cgit
 gnome-doc-utils
 kconfigwidgets
+kdoctools
 kservice
 kwallet
 libkcapi
