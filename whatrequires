@@ -1,7 +1,6 @@
 # This file contains recursive sources that require this package
 cantor
 cgit
-gnome-doc-utils
 kconfigwidgets
 kdoctools
 kservice
