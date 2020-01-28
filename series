@@ -1,5 +1,2 @@
 stateless.patch
-cve-2016-9318.nopatch
-#remove-pyverify_fd.patch
-#93a1d2238087c3acc650ba741067f34fb94905fc.patch
-#346febc6abbd63d1fa6a532c7429d2c11b5c269b.patch
+CVE-2019-7595.patch
