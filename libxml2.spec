@@ -35,7 +35,6 @@ BuildRequires : util-linux
 BuildRequires : zlib-dev
 BuildRequires : zlib-dev32
 Patch1: stateless.patch
-Patch2: cve-2016-9318.nopatch
 
 %description
 IBM OS/400 implements iconv in an odd way:
