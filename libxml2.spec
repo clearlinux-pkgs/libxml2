@@ -4,7 +4,7 @@
 #
 Name     : libxml2
 Version  : 2.9.10
-Release  : 78
+Release  : 79
 URL      : https://gitlab.gnome.org/GNOME/libxml2/-/archive/v2.9.10/libxml2-v2.9.10.tar.gz
 Source0  : https://gitlab.gnome.org/GNOME/libxml2/-/archive/v2.9.10/libxml2-v2.9.10.tar.gz
 Summary  : libXML library version2.
@@ -36,6 +36,7 @@ BuildRequires : zlib-dev
 BuildRequires : zlib-dev32
 Patch1: stateless.patch
 Patch2: CVE-2020-7595.patch
+Patch3: CVE-2019-20388.patch
 
 %description
 XML toolkit from the GNOME project
@@ -140,6 +141,7 @@ python3 components for the libxml2 package.
 cd %{_builddir}/libxml2-v2.9.10
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 pushd ..
 cp -a libxml2-v2.9.10 build32
 popd
@@ -149,7 +151,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1580336248
+export SOURCE_DATE_EPOCH=1581527961
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -199,7 +201,7 @@ cd ../build32;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1580336248
+export SOURCE_DATE_EPOCH=1581527961
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libxml2
 cp %{_builddir}/libxml2-v2.9.10/Copyright %{buildroot}/usr/share/package-licenses/libxml2/3c21506a45e8d0171fc92fd4ff6903c13adde660
