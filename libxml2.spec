@@ -4,10 +4,10 @@
 #
 Name     : libxml2
 Version  : 2.9.10
-Release  : 80
+Release  : 81
 URL      : https://gitlab.gnome.org/GNOME/libxml2/-/archive/v2.9.10/libxml2-v2.9.10.tar.gz
 Source0  : https://gitlab.gnome.org/GNOME/libxml2/-/archive/v2.9.10/libxml2-v2.9.10.tar.gz
-Summary  : XML parsing library, version 2
+Summary  : libXML library version2.
 Group    : Development/Tools
 License  : MIT
 Requires: libxml2-bin = %{version}-%{release}
@@ -31,7 +31,6 @@ BuildRequires : pkgconfig(icu-i18n)
 BuildRequires : pkgconfig(liblzma)
 BuildRequires : pkgconfig(zlib)
 BuildRequires : python3-dev
-BuildRequires : util-linux
 BuildRequires : zlib-dev
 BuildRequires : zlib-dev32
 Patch1: stateless.patch
@@ -39,15 +38,9 @@ Patch2: CVE-2020-7595.patch
 Patch3: CVE-2019-20388.patch
 
 %description
-IBM OS/400 implements iconv in an odd way:
-- Type iconv_t is a structure: therefore objects of this type cannot be
-compared to (iconv_t) -1.
-- Supported character sets names are all of the form IBMCCSIDccsid..., where
-ccsid is a decimal 5-digit integer identifying an IBM coded character set.
-In addition, character set names have to be given in EBCDIC.
-Standard character set names like "UTF-8" are NOT recognized.
-- The prototype of iconv_open() does not declare parameters as const, although
-they are not altered.
+XML toolkit from the GNOME project
+Full documentation is available on-line at
+http://xmlsoft.org/
 
 %package bin
 Summary: bin components for the libxml2 package.
@@ -64,7 +57,6 @@ Group: Development
 Requires: libxml2-lib = %{version}-%{release}
 Requires: libxml2-bin = %{version}-%{release}
 Provides: libxml2-devel = %{version}-%{release}
-Requires: libxml2 = %{version}-%{release}
 Requires: libxml2 = %{version}-%{release}
 
 %description dev
@@ -158,16 +150,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1583170343
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1586210244
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fcf-protection=full -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fcf-protection=full -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fcf-protection=full -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fcf-protection=full -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$FFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$FFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
 export CFLAGS_GENERATE="$CFLAGS -fprofile-generate -fprofile-dir=/var/tmp/pgo -fprofile-update=atomic "
 export FCFLAGS_GENERATE="$FCFLAGS -fprofile-generate -fprofile-dir=/var/tmp/pgo -fprofile-update=atomic "
 export FFLAGS_GENERATE="$FFLAGS -fprofile-generate -fprofile-dir=/var/tmp/pgo -fprofile-update=atomic "
@@ -209,7 +200,7 @@ cd ../build32;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1583170343
+export SOURCE_DATE_EPOCH=1586210244
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libxml2
 cp %{_builddir}/libxml2-v2.9.10/Copyright %{buildroot}/usr/share/package-licenses/libxml2/3c21506a45e8d0171fc92fd4ff6903c13adde660
