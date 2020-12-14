@@ -4,7 +4,7 @@
 #
 Name     : libxml2
 Version  : 2.9.10
-Release  : 84
+Release  : 85
 URL      : https://gitlab.gnome.org/GNOME/libxml2/-/archive/v2.9.10/libxml2-v2.9.10.tar.gz
 Source0  : https://gitlab.gnome.org/GNOME/libxml2/-/archive/v2.9.10/libxml2-v2.9.10.tar.gz
 Summary  : libXML library version2.
@@ -16,14 +16,21 @@ Requires: libxml2-license = %{version}-%{release}
 Requires: libxml2-man = %{version}-%{release}
 Requires: libxml2-python = %{version}-%{release}
 Requires: libxml2-python3 = %{version}-%{release}
+BuildRequires : automake
+BuildRequires : automake-dev
 BuildRequires : buildreq-gnome
 BuildRequires : bzip2-dev
 BuildRequires : gcc-dev32
 BuildRequires : gcc-libgcc32
 BuildRequires : gcc-libstdc++32
+BuildRequires : gettext-bin
 BuildRequires : glibc-dev32
 BuildRequires : glibc-libc32
+BuildRequires : libtool
+BuildRequires : libtool-dev
+BuildRequires : m4
 BuildRequires : pkg-config
+BuildRequires : pkg-config-dev
 BuildRequires : pkgconfig(32icu-i18n)
 BuildRequires : pkgconfig(32liblzma)
 BuildRequires : pkgconfig(32zlib)
@@ -33,9 +40,8 @@ BuildRequires : pkgconfig(zlib)
 BuildRequires : python3-dev
 BuildRequires : zlib-dev
 BuildRequires : zlib-dev32
-Patch1: stateless.patch
-Patch2: CVE-2020-7595.patch
-Patch3: CVE-2019-20388.patch
+Patch1: libxml2-update.patch
+Patch2: stateless.patch
 
 %description
 XML toolkit from the GNOME project
@@ -140,7 +146,6 @@ python3 components for the libxml2 package.
 cd %{_builddir}/libxml2-v2.9.10
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 pushd ..
 cp -a libxml2-v2.9.10 build32
 popd
@@ -150,7 +155,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1586210244
+export SOURCE_DATE_EPOCH=1607987948
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -195,12 +200,12 @@ export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check || :
+make %{?_smp_mflags} check || :
 cd ../build32;
-make VERBOSE=1 V=1 %{?_smp_mflags} check || : || :
+make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1586210244
+export SOURCE_DATE_EPOCH=1607987948
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libxml2
 cp %{_builddir}/libxml2-v2.9.10/Copyright %{buildroot}/usr/share/package-licenses/libxml2/3c21506a45e8d0171fc92fd4ff6903c13adde660
