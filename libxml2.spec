@@ -4,7 +4,7 @@
 #
 Name     : libxml2
 Version  : 2.9.10
-Release  : 90
+Release  : 91
 URL      : https://gitlab.gnome.org/GNOME/libxml2/-/archive/v2.9.10/libxml2-v2.9.10.tar.gz
 Source0  : https://gitlab.gnome.org/GNOME/libxml2/-/archive/v2.9.10/libxml2-v2.9.10.tar.gz
 Summary  : libXML library version2.
