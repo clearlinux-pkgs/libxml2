@@ -1,6 +1,7 @@
 # This file contains recursive sources that require this package
 cantor
 cgit
+doxygen
 kconfigwidgets
 kdoctools
 kservice

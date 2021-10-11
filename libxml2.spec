@@ -4,13 +4,14 @@
 #
 Name     : libxml2
 Version  : 2.9.12
-Release  : 94
+Release  : 95
 URL      : https://gitlab.gnome.org/GNOME/libxml2/-/archive/v2.9.12/libxml2-v2.9.12.tar.gz
 Source0  : https://gitlab.gnome.org/GNOME/libxml2/-/archive/v2.9.12/libxml2-v2.9.12.tar.gz
 Summary  : libXML library version2.
 Group    : Development/Tools
 License  : MIT
 Requires: libxml2-bin = %{version}-%{release}
+Requires: libxml2-filemap = %{version}-%{release}
 Requires: libxml2-lib = %{version}-%{release}
 Requires: libxml2-license = %{version}-%{release}
 Requires: libxml2-man = %{version}-%{release}
@@ -44,6 +45,7 @@ http://xmlsoft.org/
 Summary: bin components for the libxml2 package.
 Group: Binaries
 Requires: libxml2-license = %{version}-%{release}
+Requires: libxml2-filemap = %{version}-%{release}
 
 %description bin
 bin components for the libxml2 package.
@@ -81,10 +83,19 @@ Requires: libxml2-man = %{version}-%{release}
 doc components for the libxml2 package.
 
 
+%package filemap
+Summary: filemap components for the libxml2 package.
+Group: Default
+
+%description filemap
+filemap components for the libxml2 package.
+
+
 %package lib
 Summary: lib components for the libxml2 package.
 Group: Libraries
 Requires: libxml2-license = %{version}-%{release}
+Requires: libxml2-filemap = %{version}-%{release}
 
 %description lib
 lib components for the libxml2 package.
@@ -119,6 +130,7 @@ man components for the libxml2 package.
 Summary: python components for the libxml2 package.
 Group: Default
 Requires: libxml2-python3 = %{version}-%{release}
+Requires: libxml2-filemap = %{version}-%{release}
 
 %description python
 python components for the libxml2 package.
@@ -140,21 +152,24 @@ cd %{_builddir}/libxml2-v2.9.12
 pushd ..
 cp -a libxml2-v2.9.12 build32
 popd
+pushd ..
+cp -a libxml2-v2.9.12 buildavx2
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1621275253
+export SOURCE_DATE_EPOCH=1633977726
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -fzero-call-used-regs=used "
-export FCFLAGS="$FFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -fzero-call-used-regs=used "
-export FFLAGS="$FFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -fzero-call-used-regs=used "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -fzero-call-used-regs=used "
+export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mno-vzeroupper -mprefer-vector-width=256 "
+export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mno-vzeroupper -mprefer-vector-width=256 "
+export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mno-vzeroupper -mprefer-vector-width=256 "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mno-vzeroupper -mprefer-vector-width=256 "
 export CFLAGS_GENERATE="$CFLAGS -fprofile-generate -fprofile-dir=/var/tmp/pgo -fprofile-update=atomic "
 export FCFLAGS_GENERATE="$FCFLAGS -fprofile-generate -fprofile-dir=/var/tmp/pgo -fprofile-update=atomic "
 export FFLAGS_GENERATE="$FFLAGS -fprofile-generate -fprofile-dir=/var/tmp/pgo -fprofile-update=atomic "
@@ -178,12 +193,21 @@ CFLAGS="${CFLAGS_USE}" CXXFLAGS="${CXXFLAGS_USE}" FFLAGS="${FFLAGS_USE}" FCFLAGS
 make  %{?_smp_mflags}
 
 pushd ../build32/
-export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+export PKG_CONFIG_PATH="/usr/lib32/pkgconfig:/usr/share/pkgconfig"
 export ASFLAGS="${ASFLAGS}${ASFLAGS:+ }--32"
 export CFLAGS="${CFLAGS}${CFLAGS:+ }-m32 -mstackrealign"
 export CXXFLAGS="${CXXFLAGS}${CXXFLAGS:+ }-m32 -mstackrealign"
 export LDFLAGS="${LDFLAGS}${LDFLAGS:+ }-m32 -mstackrealign"
 %autogen --disable-static  --without-python --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
+make  %{?_smp_mflags}
+popd
+pushd ../buildavx2/
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 "
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 "
+export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3 "
+export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3 "
+%autogen --disable-static
 make  %{?_smp_mflags}
 popd
 %check
@@ -194,9 +218,11 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check || :
 cd ../build32;
 make %{?_smp_mflags} check || : || :
+cd ../buildavx2;
+make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1621275253
+export SOURCE_DATE_EPOCH=1633977726
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libxml2
 cp %{_builddir}/libxml2-v2.9.12/Copyright %{buildroot}/usr/share/package-licenses/libxml2/3c21506a45e8d0171fc92fd4ff6903c13adde660
@@ -208,6 +234,16 @@ pushd %{buildroot}/usr/lib32/pkgconfig
 for i in *.pc ; do ln -s $i 32$i ; done
 popd
 fi
+if [ -d %{buildroot}/usr/share/pkgconfig ]
+then
+pushd %{buildroot}/usr/share/pkgconfig
+for i in *.pc ; do ln -s $i 32$i ; done
+popd
+fi
+popd
+pushd ../buildavx2/
+%make_install_v3
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 popd
 %make_install
 ## install_append content
@@ -227,6 +263,7 @@ make %{_smp_mflags}
 /usr/bin/xml2-config
 /usr/bin/xmlcatalog
 /usr/bin/xmllint
+/usr/share/clear/optimized-elf/bin*
 
 %files dev
 %defattr(-,root,root,-)
@@ -557,10 +594,16 @@ make %{_smp_mflags}
 /usr/share/gtk-doc/html/libxml2/style.css
 /usr/share/gtk-doc/html/libxml2/up.png
 
+%files filemap
+%defattr(-,root,root,-)
+/usr/share/clear/filemap/filemap-libxml2
+
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libxml2.so.2
 /usr/lib64/libxml2.so.2.9.12
+/usr/share/clear/optimized-elf/lib*
+/usr/share/clear/optimized-elf/other*
 
 %files lib32
 %defattr(-,root,root,-)
