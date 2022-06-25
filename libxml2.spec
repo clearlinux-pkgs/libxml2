@@ -4,7 +4,7 @@
 #
 Name     : libxml2
 Version  : 2.9.14
-Release  : 105
+Release  : 106
 URL      : https://gitlab.gnome.org/GNOME/libxml2/-/archive/v2.9.14/libxml2-v2.9.14.tar.gz
 Source0  : https://gitlab.gnome.org/GNOME/libxml2/-/archive/v2.9.14/libxml2-v2.9.14.tar.gz
 Summary  : libXML library version2.
@@ -136,7 +136,6 @@ man components for the libxml2 package.
 Summary: python components for the libxml2 package.
 Group: Default
 Requires: libxml2-python3 = %{version}-%{release}
-Requires: libxml2-filemap = %{version}-%{release}
 
 %description python
 python components for the libxml2 package.
@@ -145,6 +144,7 @@ python components for the libxml2 package.
 %package python3
 Summary: python3 components for the libxml2 package.
 Group: Default
+Requires: libxml2-filemap = %{version}-%{release}
 Requires: python3-core
 
 %description python3
@@ -167,15 +167,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1651602430
+export SOURCE_DATE_EPOCH=1656135113
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mno-vzeroupper -mprefer-vector-width=256 "
-export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mno-vzeroupper -mprefer-vector-width=256 "
-export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mno-vzeroupper -mprefer-vector-width=256 "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mno-vzeroupper -mprefer-vector-width=256 "
+export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mprefer-vector-width=256 "
+export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mprefer-vector-width=256 "
+export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mprefer-vector-width=256 "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mprefer-vector-width=256 "
 export CFLAGS_GENERATE="$CFLAGS -fprofile-generate -fprofile-dir=/var/tmp/pgo -fprofile-update=atomic "
 export FCFLAGS_GENERATE="$FCFLAGS -fprofile-generate -fprofile-dir=/var/tmp/pgo -fprofile-update=atomic "
 export FFLAGS_GENERATE="$FFLAGS -fprofile-generate -fprofile-dir=/var/tmp/pgo -fprofile-update=atomic "
@@ -228,7 +228,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1651602430
+export SOURCE_DATE_EPOCH=1656135113
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libxml2
 cp %{_builddir}/libxml2-v2.9.14/Copyright %{buildroot}/usr/share/package-licenses/libxml2/3c21506a45e8d0171fc92fd4ff6903c13adde660
@@ -257,7 +257,7 @@ make clean
 make %{_smp_mflags}
 %make_install
 ## install_append end
-/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -450,9 +450,11 @@ make %{_smp_mflags}
 
 %files lib
 %defattr(-,root,root,-)
+/usr/lib64/glibc-hwcaps/x86-64-v3/libxml2.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libxml2.so.2
+/usr/lib64/glibc-hwcaps/x86-64-v3/libxml2.so.2.9.14
 /usr/lib64/libxml2.so.2
 /usr/lib64/libxml2.so.2.9.14
-/usr/share/clear/optimized-elf/lib*
 /usr/share/clear/optimized-elf/other*
 
 %files lib32
