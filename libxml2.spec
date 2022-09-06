@@ -4,7 +4,7 @@
 #
 Name     : libxml2
 Version  : 2.9.14
-Release  : 109
+Release  : 110
 URL      : https://gitlab.gnome.org/GNOME/libxml2/-/archive/v2.9.14/libxml2-v2.9.14.tar.gz
 Source0  : https://gitlab.gnome.org/GNOME/libxml2/-/archive/v2.9.14/libxml2-v2.9.14.tar.gz
 Summary  : libXML library version2.
@@ -167,7 +167,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656135113
+export SOURCE_DATE_EPOCH=1662506357
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -228,10 +228,10 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1656135113
+export SOURCE_DATE_EPOCH=1662506357
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libxml2
-cp %{_builddir}/libxml2-v2.9.14/Copyright %{buildroot}/usr/share/package-licenses/libxml2/3c21506a45e8d0171fc92fd4ff6903c13adde660
+cp %{_builddir}/libxml2-v%{version}/Copyright %{buildroot}/usr/share/package-licenses/libxml2/3c21506a45e8d0171fc92fd4ff6903c13adde660
 pushd ../build32/
 %make_install32
 if [ -d  %{buildroot}/usr/lib32/pkgconfig ]
@@ -262,6 +262,7 @@ make %{_smp_mflags}
 %files
 %defattr(-,root,root,-)
 /usr/lib32/xml2Conf.sh
+/usr/lib64/glibc-hwcaps/x86-64-v3/xml2Conf.sh
 /usr/lib64/xml2Conf.sh
 
 %files bin
@@ -321,6 +322,7 @@ make %{_smp_mflags}
 /usr/include/libxml2/libxml/xpathInternals.h
 /usr/include/libxml2/libxml/xpointer.h
 /usr/lib64/cmake/libxml2/libxml2-config.cmake
+/usr/lib64/glibc-hwcaps/x86-64-v3/libxml2.so
 /usr/lib64/libxml2.so
 /usr/lib64/pkgconfig/libxml-2.0.pc
 /usr/share/aclocal/*.m4
@@ -450,7 +452,6 @@ make %{_smp_mflags}
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/glibc-hwcaps/x86-64-v3/libxml2.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libxml2.so.2
 /usr/lib64/glibc-hwcaps/x86-64-v3/libxml2.so.2.9.14
 /usr/lib64/libxml2.so.2
