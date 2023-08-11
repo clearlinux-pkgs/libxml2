@@ -4,10 +4,10 @@
 # Using build pattern: autogen
 #
 Name     : libxml2
-Version  : 2.11.4
-Release  : 115
-URL      : https://gitlab.gnome.org/GNOME/libxml2/-/archive/v2.11.4/libxml2-v2.11.4.tar.gz
-Source0  : https://gitlab.gnome.org/GNOME/libxml2/-/archive/v2.11.4/libxml2-v2.11.4.tar.gz
+Version  : 2.11.5
+Release  : 116
+URL      : https://gitlab.gnome.org/GNOME/libxml2/-/archive/v2.11.5/libxml2-v2.11.5.tar.gz
+Source0  : https://gitlab.gnome.org/GNOME/libxml2/-/archive/v2.11.5/libxml2-v2.11.5.tar.gz
 Summary  : libXML library version2.
 Group    : Development/Tools
 License  : MIT
@@ -144,14 +144,14 @@ python3 components for the libxml2 package.
 
 
 %prep
-%setup -q -n libxml2-v2.11.4
-cd %{_builddir}/libxml2-v2.11.4
+%setup -q -n libxml2-v2.11.5
+cd %{_builddir}/libxml2-v2.11.5
 %patch -P 1 -p1
 pushd ..
-cp -a libxml2-v2.11.4 build32
+cp -a libxml2-v2.11.5 build32
 popd
 pushd ..
-cp -a libxml2-v2.11.4 buildavx2
+cp -a libxml2-v2.11.5 buildavx2
 popd
 
 %build
@@ -159,7 +159,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1688684694
+export SOURCE_DATE_EPOCH=1691797047
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -220,7 +220,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1688684694
+export SOURCE_DATE_EPOCH=1691797047
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libxml2
 cp %{_builddir}/libxml2-v%{version}/Copyright %{buildroot}/usr/share/package-licenses/libxml2/3c21506a45e8d0171fc92fd4ff6903c13adde660 || :
@@ -382,14 +382,14 @@ make %{_smp_mflags}
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libxml2.so.2.11.4
+/V3/usr/lib64/libxml2.so.2.11.5
 /usr/lib64/libxml2.so.2
-/usr/lib64/libxml2.so.2.11.4
+/usr/lib64/libxml2.so.2.11.5
 
 %files lib32
 %defattr(-,root,root,-)
 /usr/lib32/libxml2.so.2
-/usr/lib32/libxml2.so.2.11.4
+/usr/lib32/libxml2.so.2.11.5
 
 %files license
 %defattr(0644,root,root,0755)
