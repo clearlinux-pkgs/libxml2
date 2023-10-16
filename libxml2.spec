@@ -5,7 +5,7 @@
 #
 Name     : libxml2
 Version  : 2.11.5
-Release  : 117
+Release  : 118
 URL      : https://gitlab.gnome.org/GNOME/libxml2/-/archive/v2.11.5/libxml2-v2.11.5.tar.gz
 Source0  : https://gitlab.gnome.org/GNOME/libxml2/-/archive/v2.11.5/libxml2-v2.11.5.tar.gz
 Summary  : libXML library version2.
