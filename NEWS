@@ -1,5 +1,29 @@
 NEWS file for libxml2
 
+v2.11.7: Feb 4 2024
+
+### Security
+
+- [CVE-2024-25062] xmlreader: Don't expand XIncludes when backtracking
+
+### Regressions
+
+- tests: Fix tests --with-valid --without-xinclude
+- schemas: Fix reallocation in xmlSchemaXPathProcessHistory
+
+
+v2.11.6: Nov 16 2023
+
+### Regressions
+
+- threads: Fix --with-thread-alloc
+- xinclude: Fix 'last' pointer in xmlXIncludeCopyNode
+
+### Bug fixes
+
+- parser: Fix potential use-after-free in xmlParseCharDataInternal
+
+
 v2.11.5: Aug 9 2023
 
 ### Regressions

@@ -1,7 +1,5 @@
 Configure miss: i686-generic-linux-gnu-file
 Configure miss: whether __attribute__((destructor)) is accepted
-Configure miss: whether __attribute__((destructor)) is accepted
-Configure miss: whether __attribute__((destructor)) is accepted
 Configure miss: x86_64-generic-linux-gnu-file
 Configure miss: x86_64-generic-linux-gnu-file
 Configure miss: x86_64-generic-linux-gnu-file
