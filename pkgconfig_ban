@@ -4,3 +4,5 @@
 #
 32python-${PYTHON_VERSION}
 python-${PYTHON_VERSION}
+32liblzma
+liblzma
