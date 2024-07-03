@@ -77,6 +77,7 @@ libxml2.so.2:htmlAutoCloseTag
 libxml2.so.2:htmlCreateFileParserCtxt
 libxml2.so.2:htmlCreateMemoryParserCtxt
 libxml2.so.2:htmlCreatePushParserCtxt
+libxml2.so.2:htmlCtxtParseDocument
 libxml2.so.2:htmlCtxtReadDoc
 libxml2.so.2:htmlCtxtReadFd
 libxml2.so.2:htmlCtxtReadFile
@@ -162,7 +163,9 @@ libxml2.so.2:xmlAddDocEntity
 libxml2.so.2:xmlAddDtdEntity
 libxml2.so.2:xmlAddElementDecl
 libxml2.so.2:xmlAddEncodingAlias
+libxml2.so.2:xmlAddEntity
 libxml2.so.2:xmlAddID
+libxml2.so.2:xmlAddIDSafe
 libxml2.so.2:xmlAddNextSibling
 libxml2.so.2:xmlAddNotationDecl
 libxml2.so.2:xmlAddPrevSibling
@@ -217,7 +220,9 @@ libxml2.so.2:xmlBufferWriteChar
 libxml2.so.2:xmlBufferWriteQuotedString
 libxml2.so.2:xmlBuildQName
 libxml2.so.2:xmlBuildRelativeURI
+libxml2.so.2:xmlBuildRelativeURISafe
 libxml2.so.2:xmlBuildURI
+libxml2.so.2:xmlBuildURISafe
 libxml2.so.2:xmlByteConsumed
 libxml2.so.2:xmlC14NDocDumpMemory
 libxml2.so.2:xmlC14NDocSave
@@ -254,6 +259,7 @@ libxml2.so.2:xmlCharStrndup
 libxml2.so.2:xmlCheckFilename
 libxml2.so.2:xmlCheckHTTPInput
 libxml2.so.2:xmlCheckLanguageID
+libxml2.so.2:xmlCheckThreadLocalStorage
 libxml2.so.2:xmlCheckUTF8
 libxml2.so.2:xmlCheckVersion
 libxml2.so.2:xmlChildElementCount
@@ -297,7 +303,9 @@ libxml2.so.2:xmlCreateMemoryParserCtxt
 libxml2.so.2:xmlCreatePushParserCtxt
 libxml2.so.2:xmlCreateURI
 libxml2.so.2:xmlCreateURLParserCtxt
+libxml2.so.2:xmlCtxtErrMemory
 libxml2.so.2:xmlCtxtGetLastError
+libxml2.so.2:xmlCtxtParseDocument
 libxml2.so.2:xmlCtxtReadDoc
 libxml2.so.2:xmlCtxtReadFd
 libxml2.so.2:xmlCtxtReadFile
@@ -306,6 +314,9 @@ libxml2.so.2:xmlCtxtReadMemory
 libxml2.so.2:xmlCtxtReset
 libxml2.so.2:xmlCtxtResetLastError
 libxml2.so.2:xmlCtxtResetPush
+libxml2.so.2:xmlCtxtSetErrorHandler
+libxml2.so.2:xmlCtxtSetMaxAmplification
+libxml2.so.2:xmlCtxtSetOptions
 libxml2.so.2:xmlCtxtUseOptions
 libxml2.so.2:xmlCurrentChar
 libxml2.so.2:xmlDOMWrapAdoptNode
@@ -368,6 +379,7 @@ libxml2.so.2:xmlFileOpen
 libxml2.so.2:xmlFileRead
 libxml2.so.2:xmlFindCharEncodingHandler
 libxml2.so.2:xmlFirstElementChild
+libxml2.so.2:xmlFormatError
 libxml2.so.2:xmlFreeAttributeTable
 libxml2.so.2:xmlFreeAutomata
 libxml2.so.2:xmlFreeCatalog
@@ -377,6 +389,7 @@ libxml2.so.2:xmlFreeDtd
 libxml2.so.2:xmlFreeElementContent
 libxml2.so.2:xmlFreeElementTable
 libxml2.so.2:xmlFreeEntitiesTable
+libxml2.so.2:xmlFreeEntity
 libxml2.so.2:xmlFreeEnumeration
 libxml2.so.2:xmlFreeIDTable
 libxml2.so.2:xmlFreeInputStream
@@ -424,6 +437,7 @@ libxml2.so.2:xmlGetLineNo
 libxml2.so.2:xmlGetNoNsProp
 libxml2.so.2:xmlGetNodePath
 libxml2.so.2:xmlGetNsList
+libxml2.so.2:xmlGetNsListSafe
 libxml2.so.2:xmlGetNsProp
 libxml2.so.2:xmlGetParameterEntity
 libxml2.so.2:xmlGetPredefinedEntity
@@ -434,10 +448,14 @@ libxml2.so.2:xmlGetUTF8Char
 libxml2.so.2:xmlHasFeature
 libxml2.so.2:xmlHasNsProp
 libxml2.so.2:xmlHasProp
+libxml2.so.2:xmlHashAdd
+libxml2.so.2:xmlHashAdd2
+libxml2.so.2:xmlHashAdd3
 libxml2.so.2:xmlHashAddEntry
 libxml2.so.2:xmlHashAddEntry2
 libxml2.so.2:xmlHashAddEntry3
 libxml2.so.2:xmlHashCopy
+libxml2.so.2:xmlHashCopySafe
 libxml2.so.2:xmlHashCreate
 libxml2.so.2:xmlHashCreateDict
 libxml2.so.2:xmlHashDefaultDeallocator
@@ -525,10 +543,10 @@ libxml2.so.2:xmlLoadCatalogs
 libxml2.so.2:xmlLoadExternalEntity
 libxml2.so.2:xmlLoadSGMLSuperCatalog
 libxml2.so.2:xmlLockLibrary
+libxml2.so.2:xmlLookupCharEncodingHandler
 libxml2.so.2:xmlLsCountNode
 libxml2.so.2:xmlLsOneNode
 libxml2.so.2:xmlMallocAtomicLoc
-libxml2.so.2:xmlMallocBreakpoint
 libxml2.so.2:xmlMallocLoc
 libxml2.so.2:xmlMemBlocks
 libxml2.so.2:xmlMemDisplay
@@ -625,7 +643,9 @@ libxml2.so.2:xmlNodeAddContentLen
 libxml2.so.2:xmlNodeBufGetContent
 libxml2.so.2:xmlNodeDump
 libxml2.so.2:xmlNodeDumpOutput
+libxml2.so.2:xmlNodeGetAttrValue
 libxml2.so.2:xmlNodeGetBase
+libxml2.so.2:xmlNodeGetBaseSafe
 libxml2.so.2:xmlNodeGetContent
 libxml2.so.2:xmlNodeGetLang
 libxml2.so.2:xmlNodeGetSpacePreserve
@@ -640,6 +660,7 @@ libxml2.so.2:xmlNodeSetName
 libxml2.so.2:xmlNodeSetSpacePreserve
 libxml2.so.2:xmlNormalizeURIPath
 libxml2.so.2:xmlNormalizeWindowsPath
+libxml2.so.2:xmlOpenCharEncodingHandler
 libxml2.so.2:xmlOutputBufferClose
 libxml2.so.2:xmlOutputBufferCreateBuffer
 libxml2.so.2:xmlOutputBufferCreateFd
@@ -712,6 +733,7 @@ libxml2.so.2:xmlParseTextDecl
 libxml2.so.2:xmlParseURI
 libxml2.so.2:xmlParseURIRaw
 libxml2.so.2:xmlParseURIReference
+libxml2.so.2:xmlParseURISafe
 libxml2.so.2:xmlParseVersionInfo
 libxml2.so.2:xmlParseVersionNum
 libxml2.so.2:xmlParseXMLDecl
@@ -740,6 +762,7 @@ libxml2.so.2:xmlParserValidityError
 libxml2.so.2:xmlParserValidityWarning
 libxml2.so.2:xmlParserWarning
 libxml2.so.2:xmlPathToURI
+libxml2.so.2:xmlPatternCompileSafe
 libxml2.so.2:xmlPatternFromRoot
 libxml2.so.2:xmlPatternGetStreamCtxt
 libxml2.so.2:xmlPatternMatch
@@ -874,6 +897,7 @@ libxml2.so.2:xmlSaveDoc
 libxml2.so.2:xmlSaveFile
 libxml2.so.2:xmlSaveFileEnc
 libxml2.so.2:xmlSaveFileTo
+libxml2.so.2:xmlSaveFinish
 libxml2.so.2:xmlSaveFlush
 libxml2.so.2:xmlSaveFormatFile
 libxml2.so.2:xmlSaveFormatFileEnc
@@ -1024,6 +1048,7 @@ libxml2.so.2:xmlStrstr
 libxml2.so.2:xmlStrsub
 libxml2.so.2:xmlSubstituteEntitiesDefault
 libxml2.so.2:xmlSwitchEncoding
+libxml2.so.2:xmlSwitchEncodingName
 libxml2.so.2:xmlSwitchInputEncoding
 libxml2.so.2:xmlSwitchToEncoding
 libxml2.so.2:xmlTextConcat
@@ -1050,6 +1075,7 @@ libxml2.so.2:xmlTextReaderGetAttribute
 libxml2.so.2:xmlTextReaderGetAttributeNo
 libxml2.so.2:xmlTextReaderGetAttributeNs
 libxml2.so.2:xmlTextReaderGetErrorHandler
+libxml2.so.2:xmlTextReaderGetLastError
 libxml2.so.2:xmlTextReaderGetParserColumnNumber
 libxml2.so.2:xmlTextReaderGetParserLineNumber
 libxml2.so.2:xmlTextReaderGetParserProp
@@ -1092,6 +1118,7 @@ libxml2.so.2:xmlTextReaderRelaxNGValidateCtxt
 libxml2.so.2:xmlTextReaderSchemaValidate
 libxml2.so.2:xmlTextReaderSchemaValidateCtxt
 libxml2.so.2:xmlTextReaderSetErrorHandler
+libxml2.so.2:xmlTextReaderSetMaxAmplification
 libxml2.so.2:xmlTextReaderSetParserProp
 libxml2.so.2:xmlTextReaderSetSchema
 libxml2.so.2:xmlTextReaderSetStructuredErrorHandler
@@ -1099,6 +1126,7 @@ libxml2.so.2:xmlTextReaderSetup
 libxml2.so.2:xmlTextReaderStandalone
 libxml2.so.2:xmlTextReaderValue
 libxml2.so.2:xmlTextReaderXmlLang
+libxml2.so.2:xmlTextWriterClose
 libxml2.so.2:xmlTextWriterEndAttribute
 libxml2.so.2:xmlTextWriterEndCDATA
 libxml2.so.2:xmlTextWriterEndComment
@@ -1403,6 +1431,7 @@ libxml2.so.2:xmlValidatePushElement
 libxml2.so.2:xmlValidateQName
 libxml2.so.2:xmlValidateRoot
 libxml2.so.2:xmlXIncludeFreeContext
+libxml2.so.2:xmlXIncludeGetLastError
 libxml2.so.2:xmlXIncludeNewContext
 libxml2.so.2:xmlXIncludeProcess
 libxml2.so.2:xmlXIncludeProcessFlags
@@ -1411,6 +1440,7 @@ libxml2.so.2:xmlXIncludeProcessNode
 libxml2.so.2:xmlXIncludeProcessTree
 libxml2.so.2:xmlXIncludeProcessTreeFlags
 libxml2.so.2:xmlXIncludeProcessTreeFlagsData
+libxml2.so.2:xmlXIncludeSetErrorHandler
 libxml2.so.2:xmlXIncludeSetFlags
 libxml2.so.2:xmlXPathAddValues
 libxml2.so.2:xmlXPathBooleanFunction
@@ -1546,6 +1576,7 @@ libxml2.so.2:xmlXPathRegisteredVariablesCleanup
 libxml2.so.2:xmlXPathRoot
 libxml2.so.2:xmlXPathRoundFunction
 libxml2.so.2:xmlXPathSetContextNode
+libxml2.so.2:xmlXPathSetErrorHandler
 libxml2.so.2:xmlXPathStartsWithFunction
 libxml2.so.2:xmlXPathStringEvalNumber
 libxml2.so.2:xmlXPathStringFunction
