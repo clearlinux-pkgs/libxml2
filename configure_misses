@@ -1,6 +1,4 @@
 Configure miss: i686-generic-linux-gnu-file
-Configure miss: liblzma
-Configure miss: lzma.h
 Configure miss: whether __attribute__((destructor)) is accepted
 Configure miss: x86_64-generic-linux-gnu-file
 Configure miss: x86_64-generic-linux-gnu-file
