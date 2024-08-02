@@ -1,5 +1,5 @@
 PKG_NAME := libxml2
-URL = https://gitlab.gnome.org/GNOME/libxml2/-/archive/v2.13.2/libxml2-v2.13.2.tar.gz
+URL = https://download.gnome.org/sources/libxml2/2.13/libxml2-2.13.3.tar.xz
 ARCHIVES = 
 
 include ../common/Makefile.common
