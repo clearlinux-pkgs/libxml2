@@ -7,7 +7,7 @@
 #
 Name     : libxml2
 Version  : 2.13.4
-Release  : 128
+Release  : 129
 URL      : https://download.gnome.org/sources/libxml2/2.13/libxml2-2.13.4.tar.xz
 Source0  : https://download.gnome.org/sources/libxml2/2.13/libxml2-2.13.4.tar.xz
 Summary  : libXML library version2.
