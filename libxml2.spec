@@ -7,7 +7,7 @@
 #
 Name     : libxml2
 Version  : 2.14.2
-Release  : 133
+Release  : 134
 URL      : https://download.gnome.org/sources/libxml2/2.14/libxml2-2.14.2.tar.xz
 Source0  : https://download.gnome.org/sources/libxml2/2.14/libxml2-2.14.2.tar.xz
 Source1  : http://localhost/cgit/projects/libxml2-profile/snapshot/libxml2-profile-1.tar.bz2
