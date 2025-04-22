@@ -1,4 +1,4 @@
-make dba100000.xml
+perl ../libxml2-profile/dbgenattr.pl 100000 > dba100000.xml
 ./xmllint --noout  dba100000.xml
 ./xmllint --stream  dba100000.xml
 ./xmllint --noout --valid test/valid/REC-xml-19980210.xml

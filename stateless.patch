@@ -1,4 +1,4 @@
-From 6ea82fb3d48a833ae4fa5de5483fbf6afcaed166 Mon Sep 17 00:00:00 2001
+From 48d3541d36f225e3ac302ed7abec095decdd7534 Mon Sep 17 00:00:00 2001
 From: William Douglas <william.douglas@intel.com>
 Date: Thu, 6 Jul 2023 15:52:19 -0700
 Subject: [PATCH] stateless
@@ -8,22 +8,21 @@ Subject: [PATCH] stateless
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/catalog.c b/catalog.c
-index 24a49f3..12ce657 100644
+index dc22e27..9e44ee1 100644
 --- a/catalog.c
 +++ b/catalog.c
-@@ -68,10 +68,10 @@
+@@ -55,9 +55,9 @@
  #define XML_URN_PUBID "urn:publicid:"
  #define XML_CATAL_BREAK ((xmlChar *) -1)
  #ifndef XML_XML_DEFAULT_CATALOG
--#define XML_XML_DEFAULT_CATALOG "file://" SYSCONFDIR "/xml/catalog"
+-#define XML_XML_DEFAULT_CATALOG "file://" XML_SYSCONFDIR "/xml/catalog"
 +#define XML_XML_DEFAULT_CATALOG "file:///usr/share/defaults/xml/catalog"
  #endif
  #ifndef XML_SGML_DEFAULT_CATALOG
--#define XML_SGML_DEFAULT_CATALOG "file://" SYSCONFDIR "/sgml/catalog"
+-#define XML_SGML_DEFAULT_CATALOG "file://" XML_SYSCONFDIR "/sgml/catalog"
 +#define XML_SGML_DEFAULT_CATALOG "file:///usr/share/defaults/sgml/catalog"
  #endif
  
- #if defined(_WIN32) && defined(_MSC_VER)
 -- 
-2.41.0
+2.49.0
 
