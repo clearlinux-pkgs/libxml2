@@ -7,10 +7,10 @@
 #
 Name     : libxml2
 Version  : 2.14.2
-Release  : 132
+Release  : 133
 URL      : https://download.gnome.org/sources/libxml2/2.14/libxml2-2.14.2.tar.xz
 Source0  : https://download.gnome.org/sources/libxml2/2.14/libxml2-2.14.2.tar.xz
-Source1  : http://localhost/cgit/cgit/projects/libxml2-profile/snapshot/libxml2-profile-1.tar.bz2
+Source1  : http://localhost/cgit/projects/libxml2-profile/snapshot/libxml2-profile-1.tar.bz2
 Summary  : libXML library version2.
 Group    : Development/Tools
 License  : MIT
@@ -169,7 +169,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1745340667
+export SOURCE_DATE_EPOCH=1745346907
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -266,7 +266,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1745340667
+export SOURCE_DATE_EPOCH=1745346907
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libxml2
 cp %{_builddir}/libxml2-%{version}/Copyright %{buildroot}/usr/share/package-licenses/libxml2/f8e4e1e2a6be883608f0336e455f84155a3acb41 || :
