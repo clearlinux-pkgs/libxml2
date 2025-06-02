@@ -1,2 +1,2 @@
---with-http
---without-lzma
+-Dicu=enabled
+-Dlegacy=enabled

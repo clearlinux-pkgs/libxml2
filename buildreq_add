@@ -6,3 +6,5 @@ bzip2-dev
 zlib-dev
 zlib-dev32
 python3-dev
+icu4c-dev
+icu4c-dev32
